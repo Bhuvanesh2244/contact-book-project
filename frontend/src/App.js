@@ -1,4 +1,3 @@
-// src/App.js
 import React, { useState, useEffect, useCallback } from "react";
 import axios from "axios";
 import Form from "./components/Form";
@@ -9,13 +8,10 @@ import "./App.css";
 function App() {
   const [contacts, setContacts] = useState([]);
   const [page, setPage] = useState(1);
-  const [limit] = useState(5); // contacts per page
+  const [limit] = useState(5); 
   const [total, setTotal] = useState(0);
-
-  // Backend URL from environment variable
   const BASE_URL = process.env.REACT_APP_API_URL;
 
-  // Fetch contacts
   const fetchContacts = useCallback(async () => {
     try {
       const res = await axios.get(
@@ -32,7 +28,6 @@ function App() {
     fetchContacts();
   }, [fetchContacts, page]);
 
-  // Add contact
   const addContact = async (contact) => {
     try {
       await axios.post(`${BASE_URL}/contacts`, contact);
@@ -42,7 +37,6 @@ function App() {
     }
   };
 
-  // Delete contact
   const deleteContact = async (id) => {
     try {
       await axios.delete(`${BASE_URL}/contacts/${id}`);
