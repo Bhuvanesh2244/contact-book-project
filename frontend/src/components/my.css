@@ -12,7 +12,7 @@
     font-weight:1000;
 }
 
-.titles-1 {
+.tit-1 {
     color:#ffffff;
     font-size:20px;
     font-family:"Bree Serif",serif;
@@ -39,5 +39,30 @@ span {
     color:yellow;
     font-weight:800;
     font-family:"Roboto";
+}
+
+.button {
+  padding: 12px 20px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #00e6e6, #00b3b3); /* turquoise gradient */
+  color: #fff;
+  font-weight: bold;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+  letter-spacing: 0.5px;
+}
+
+.button:hover {
+  background: linear-gradient(135deg, #00cccc, #009999);
+  transform: translateY(-2px);
+  box-shadow: 0 6px 14px rgba(0, 0, 0, 0.4);
+}
+
+.button:active {
+  transform: translateY(0);
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.3);
 }
 
