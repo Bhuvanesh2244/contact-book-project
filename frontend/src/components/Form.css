@@ -1,15 +1,15 @@
 .form {
-  margin: 20px auto;          /* Center form horizontally */
+  margin: 20px auto;        
   display: flex;
   gap: 10px;
-  justify-content: center;    /* Center items inside */
-  max-width: 600px;           /* Limit max width */
+  justify-content: center;   
+  max-width: 600px;         
 }
 
 .input {
   padding: 10px;
-  width: 100%;                /* Use available width */
-  max-width: 250px;           /* Prevent too wide inputs */
+  width: 100%;                
+  max-width: 250px;           
   border: 1px solid #ccc;
   border-radius: 6px;
 }
@@ -29,16 +29,15 @@
   background: #0056b3;
 }
 
-/* ✅ Responsiveness */
 @media (max-width: 768px) {
   .form {
-    flex-direction: column;   /* Stack inputs and button */
+    flex-direction: column;   
     align-items: stretch;
   }
 
   .input,
   .button {
-    width: 100%;              /* Full width on mobile */
+    width: 100%;              
     max-width: none;
   }
 }
