@@ -40,7 +40,7 @@ function App() {
   const deleteContact = async (id) => {
     try {
       await axios.delete(`${BASE_URL}/contacts/${id}`);
-      fetchContacts(); // refresh list
+      fetchContacts(); 
     } catch (err) {
       console.error("Error deleting contact:", err.message);
     }
