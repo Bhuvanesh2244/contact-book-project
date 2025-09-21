@@ -1,4 +1,3 @@
-// src/components/Form.js
 import React, { useState } from "react";
 import './Form.css';
 
@@ -6,12 +5,11 @@ function Form({ onAdd }) {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [phone, setPhone] = useState("");
-  const [errors, setErrors] = useState({}); // store validation errors
+  const [errors, setErrors] = useState({}); 
 
   const validate = () => {
     const newErrors = {};
 
-    // Name validation
     const nameRegex = /^[A-Za-z\s]+$/;
     if (!name) {
       newErrors.name = "Name is required.";
@@ -19,12 +17,10 @@ function Form({ onAdd }) {
       newErrors.name = "Name should only contain alphabets and spaces.";
     }
 
-    // Email validation
     if (!email) {
       newErrors.email = "Email is required.";
     }
 
-    // Phone validation
     const phoneRegex = /^[0-9]{10}$/;
     if (!phone) {
       newErrors.phone = "Phone number is required.";
