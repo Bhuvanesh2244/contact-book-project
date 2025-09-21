@@ -1,4 +1,3 @@
-// index.js
 const express = require("express");
 const cors = require("cors");
 const sqlite3 = require("sqlite3").verbose();
@@ -6,12 +5,10 @@ const path = require("path");
 
 const app = express();
 
-// Middleware
 app.use(express.json());
 app.use(cors());
 
-// Database setup
-const db_name = path.join(__dirname, "contacts.db"); // DB file in backend folder
+const db_name = path.join(__dirname, "contacts.db"); 
 const db = new sqlite3.Database(db_name, (err) => {
   if (err) {
     console.error("Error opening database:", err.message);
@@ -34,12 +31,6 @@ const db = new sqlite3.Database(db_name, (err) => {
     );
   }
 });
-
-// -------------------------
-// API Endpoints
-// -------------------------
-
-// POST /contacts → Add new contact
 app.post("/contacts", (req, res) => {
   try {
     const { name, email, phone } = req.body;
@@ -67,20 +58,17 @@ app.post("/contacts", (req, res) => {
   }
 });
 
-// GET /contacts → Fetch with pagination
 app.get("/contacts", (req, res) => {
   try {
     const { page = 1, limit = 10 } = req.query;
     const offset = (page - 1) * limit;
 
-    // Total count for frontend pagination
     db.get("SELECT COUNT(*) AS count FROM contacts", (err, countResult) => {
       if (err) {
         return res.status(500).json({ error: err.message });
       }
       const total = countResult.count;
 
-      // Fetch contacts with limit & offset
       db.all(
         "SELECT * FROM contacts LIMIT ? OFFSET ?",
         [parseInt(limit), parseInt(offset)],
@@ -102,7 +90,6 @@ app.get("/contacts", (req, res) => {
   }
 });
 
-// DELETE /contacts/:id → Delete by ID
 app.delete("/contacts/:id", (req, res) => {
   try {
     const { id } = req.params;
@@ -114,23 +101,17 @@ app.delete("/contacts/:id", (req, res) => {
       if (this.changes === 0) {
         return res.status(404).json({ error: "Contact not found" });
       }
-      res.sendStatus(204); // Success, no content
+      res.sendStatus(204);
     });
   } catch (error) {
     res.status(500).json({ error: "Server error" });
   }
 });
 
-// -------------------------
-// Test route
-// -------------------------
 app.get("/", (req, res) => {
   res.send("Server with SQLite is running 🚀");
 });
 
-// -------------------------
-// Start server
-// -------------------------
 const PORT = 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
